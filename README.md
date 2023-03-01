@@ -1,20 +1,31 @@
 openwrt官方源代码RTC时钟不工作问题会导致luci-app-statistics工作不正常，修改target/linux/mvebu/
 
 config-5.10
-
 config-5.15
 
-本行一定要注释掉# CONFIG_RTC_DRV_ARMADA38X 改为is not set
+22.03分支添加或者修改以下行
 
-加入这一行CONFIG_RTC_DRV_DS1307=y这个方法在22.03分支中适用
+```
+# CONFIG_RTC_DRV_ARMADA38X is not set
+CONFIG_RTC_INTF_DEV_UIE_EMUL=y
+CONFIG_RTC_DRV_DS1307=y
 
-Master分支还要添加
+```
 
+这个方法在22.03分支中适用
+
+Master修改添加以下行
+
+```
+
+CONFIG_RTC_DRV_DS1307=y
 CONFIG_CLKDEV_LOOKUP=y
-
+CONFIG_RTC_INTF_DEV_UIE_EMUL=y
 CONFIG_ARM_ARCH_TIMER=y
-
 CONFIG_ARM_ARCH_TIMER_EVTSTREAM=y
+# CONFIG_RTC_DRV_ARMADA38X is not set
+
+```
 
 make menuconfig选中moduleKernel modules > Other modules --> kmod-rtc-ds1307
 
@@ -63,9 +74,9 @@ temp1:        +40.0°C
 temp2:        +36.0°C
 ```
 
-系统时间设置安装hwclock （busybox功能不全，编译时候取消busybox的hwclock 选定Utilities-----hwclock的程序编译   刷入后 执行hwclock -w -l -v
+系统时间设置，编译时候选择busybox的hwclock 选定Base system  --->Customize busybox options---->Linux System Utilities  ---> hwclock程序编译   刷入后 执行hwclock -w
 
-RTC硬件时钟修复后luci-app-statistics也自动恢复正常，，无数据跟系统时间有关，有空在研究问题报告，项目中风扇控制脚本和补丁作废
+RTC硬件时钟修复后luci-app-statistics也自动恢复正常，，无数据跟RTC时间有关，项目中风扇控制脚本和补丁作废
 
 luci-app-statistics无数据发生的原因链接如下
 
