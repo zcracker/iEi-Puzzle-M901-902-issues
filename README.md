@@ -74,7 +74,9 @@ temp1:        +40.0°C
 temp2:        +36.0°C
 ```
 
-系统时间设置，编译时候选择busybox的hwclock 选定Base system  --->Customize busybox options---->Linux System Utilities  ---> hwclock程序编译   刷入后 执行hwclock -w
+系统时间设置，编译时候选择busybox的hwclock 选定Base system  --->Customize busybox options---->Linux System Utilities  ---> hwclock程序编译   刷入后连接网络后同步浏览器时间后
+
+执行hwclock -w
 
 RTC硬件时钟修复后luci-app-statistics也自动恢复正常，，无数据跟RTC时间有关，项目中风扇控制脚本和补丁作废
 
