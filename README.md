@@ -19,7 +19,7 @@ Master修改添加修改以下行， /有疑问要不要加的有空在测试更
 ```
 
   CONFIG_RTC_DRV_DS1307=y
-  CONFIG_CLKDEV_LOOKUP=y   /有疑问要不要加
+  CONFIG_CLKDEV_LOOKUP=y   /有疑问要不要加，22.03 默认选中
   CONFIG_RTC_INTF_DEV_UIE_EMUL=y
   CONFIG_ARM_ARCH_TIMER=y  /有疑问要不要加
   CONFIG_ARM_ARCH_TIMER_EVTSTREAM=y  /有疑问要不要加
@@ -81,9 +81,9 @@ temp2:        +36.0°C
 
 执行hwclock -w
 
-RTC硬件时钟修复后luci-app-statistics也自动恢复正常，，无数据跟RTC时间有关，项目中风扇控制脚本和补丁作废
+RTC硬件时钟修复后luci-app-statistics也自动恢复正常，，无数据跟RTC时间有关，项目中风扇控制脚本作废
 
-luci-app-statistics无数据发生的原因链接如下
+luci-app-statistics无数据发生的原因链接如下，可参考
 
 https://github.com/openwrt/packages/pull/10383
 
@@ -95,7 +95,7 @@ iEi-Puzzle-M901升级OpenWrt22.03后内核日志提示iei-wt61p803-puzzle serial
 
 导致LED和温度传感器工作不正常
 
-本目录中的补丁是客服给的，替换target/linux/mvebu/目录下补丁文件夹中的902和904即可编译，本项目中的补丁因为不符合openwrt官方标准，官方已经提交了新的pr
+本目录中的补丁是客服给的，替换target/linux/mvebu/目录下补丁文件夹中的902和904即可编译，本项目中的补丁因为不符合openwrt官方标准，等待官方提交新的pr
 
 链接如下
 
