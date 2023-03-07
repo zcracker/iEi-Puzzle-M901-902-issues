@@ -14,15 +14,15 @@ config-5.15
 
 这个方法在22.03分支中适用
 
-Master修改添加修改以下行
+Master修改添加修改以下行， /有疑问要不要加的有空在测试更新本说明，希望大家可以测试回复告诉我
 
 ```
 
   CONFIG_RTC_DRV_DS1307=y
-  CONFIG_CLKDEV_LOOKUP=y
+  CONFIG_CLKDEV_LOOKUP=y   /有疑问要不要加
   CONFIG_RTC_INTF_DEV_UIE_EMUL=y
-  CONFIG_ARM_ARCH_TIMER=y
-  CONFIG_ARM_ARCH_TIMER_EVTSTREAM=y
+  CONFIG_ARM_ARCH_TIMER=y  /有疑问要不要加
+  CONFIG_ARM_ARCH_TIMER_EVTSTREAM=y  /有疑问要不要加
 # CONFIG_RTC_DRV_ARMADA38X is not set
 
 ```
@@ -34,7 +34,7 @@ make menuconfig选中moduleKernel modules > Other modules --> kmod-rtc-ds1307
 https://github.com/openwrt/openwrt/commit/ea33a5def506b0ba647f779e60e6ccca03c29a17
 https://github.com/openwrt/openwrt/commit/aa41f4a395bda69cb6ef0ef423e2a4077284fbcd
 
-这个项目补丁文件和风扇控制脚本作废，拷贝master分支以下文件到22.03目录下编译
+拷贝master分支以下文件到22.03目录下编译
 
 patches-5.10/903-drivers-hwmon-Add-the-IEI-WT61P803-PUZZLE-HWMON-driv.patch
 
@@ -44,14 +44,17 @@ target/linux/mvebu/files/arch/arm64/boot/dts/marvell/cn9132-puzzle-m902.dts
 
 target/linux/mvebu/files/arch/arm64/boot/dts/marvell/puzzle-thermal.dtsi
 
-22.03风扇控制没有问题，但是iei-wt61p803-puzzle serial0-0: Command reply receive timeout，仍然弹出，LED报错，
+22.03和master风扇控制没有问题，但是iei-wt61p803-puzzle serial0-0: Command reply receive timeout，仍然弹出，LED报错，
 
 ```
 [167591.374374] iei-wt61p803-puzzle serial0-0: Command reply receive timeout
 [167591.381197] leds green:cloud: Setting an LED's brightness failed (-110)
 ```
 
-master分支经过测试不会弹出iei-wt61p803-puzzle serial0-0: Command reply receive timeout
+可以拷贝902和904的补丁到 
+patches-5.10/
+patches-5.15/
+目录下编译后，过测试不会弹出iei-wt61p803-puzzle serial0-0: Command reply receive timeout
 
 可以使用cat /sys/class/hwmon/hwmon6/pwm1来查看档位
 
