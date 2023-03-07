@@ -54,7 +54,7 @@ target/linux/mvebu/files/arch/arm64/boot/dts/marvell/puzzle-thermal.dtsi
 可以拷贝902和904的补丁到 
 patches-5.10/
 patches-5.15/
-目录下编译后，过测试不会弹出iei-wt61p803-puzzle serial0-0: Command reply receive timeout
+目录下编译后，测试不会弹出iei-wt61p803-puzzle serial0-0: Command reply receive timeout
 
 可以使用cat /sys/class/hwmon/hwmon6/pwm1来查看档位
 
