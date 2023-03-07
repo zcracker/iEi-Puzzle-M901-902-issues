@@ -79,7 +79,14 @@ temp2:        +36.0°C
 
 系统时间设置，编译时候选择busybox的hwclock 选定Base system  --->Customize busybox options---->Linux System Utilities  ---> hwclock程序编译   刷入后连接网络后同步浏览器时间后
 
-执行hwclock -w
+执行hwclock -w即可，查找rtc是否正常，opkg update & opkg install hwclokc 执行hwclcok -r 后未出现以下错误，说明rtc工作正常
+
+
+```
+Waiting for clock tick...
+ioctl(3, RTC_UIE_ON, 0): Invalid argument
+
+```
 
 RTC硬件时钟修复后luci-app-statistics也自动恢复正常，，无数据跟RTC时间有关，项目中风扇控制脚本作废
 
