@@ -12,19 +12,6 @@ config-5.15
 
 ```
 
-这个方法在22.03分支中适用
-
-Master修改添加修改以下行， 
-
-```
-
-  CONFIG_RTC_DRV_DS1307=y
-  CONFIG_CLKDEV_LOOKUP=y 
-  CONFIG_RTC_INTF_DEV_UIE_EMUL=y
-# CONFIG_RTC_DRV_ARMADA38X is not set
-
-```
-
 make menuconfig选中moduleKernel modules > Other modules --> kmod-rtc-ds1307
 
 官方更新了903补丁和dts文件来控制风扇转速，风扇转速档位分别为80 102 170 230 255 链接如下
