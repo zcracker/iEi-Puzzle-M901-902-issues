@@ -61,6 +61,25 @@ fan5:           0 RPM
 temp1:        +40.0°C
 temp2:        +36.0°C
 ```
+设备树控制风扇转速问题也已经修复
+
+mvebu: fix PXA I2C bus with recovery
+Since kernel 5.11, the PXA I2C driver has been converted to generic I2C
+recovery, which makes the I2C bus completely lock up if recovery pinctrl
+is present in the DT and I2C recovery is enabled.
+
+This effectively completely broke I2C on Methode uDPU and eDPU boards
+as both of them rely on I2C recovery.
+
+After a discussion upstream, it was concluded that there is no simple fix
+and that the blamed upstream commit:
+0b01392c18b9993a584f36ace1d61118772ad0ca ("i2c: pxa: move to generic GPIO
+recovery") should be reverted.
+I have sent the revert upstream, it should be merged soon so lets "fix"
+OpenWrt as well.
+
+
+https://github.com/openwrt/openwrt/commit/f74f5b29948aa9303bf94045cf938cee49897944
 
 系统时间设置，编译时候选择hwclock程序编译   刷入后连接网络后同步浏览器时间后
 
