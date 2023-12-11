@@ -63,7 +63,10 @@ temp2:        +36.0°C
 ```
 设备树控制风扇转速问题也已经修复
 6.1.64
-5.15.140内内核正式修复
+
+5.15.140
+
+内内核正式修复
 
 mvebu: fix PXA I2C bus with recovery
 Since kernel 5.11, the PXA I2C driver has been converted to generic I2C
